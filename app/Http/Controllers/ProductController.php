@@ -69,7 +69,7 @@ class ProductController extends Controller
     {
         //
         if(Auth::guest() || (Auth::user()->role !== "admin"))
-            return redirect(route('products'))->with('error', 'you are not authorized');
+            return redirect(route('products'))->with('error', 'Вы не авторизованы');
 
         $categories = Category::getlistnavbar();
         $form = [
@@ -162,7 +162,7 @@ class ProductController extends Controller
     {
 
         if(Auth::guest() || (Auth::user()->role !== "admin"))
-            return redirect(route('products'))->with('error', 'you are not authorized');
+            return redirect(route('products'))->with('error', 'Вы не авторизованы');
 
         $product = Product::find($id);
 
@@ -231,7 +231,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if(Auth::guest() || (Auth::user()->role !== "admin"))
-            return redirect(route('products'))->with('error', 'you are not authorized');
+            return redirect(route('products'))->with('error', 'Вы не авторизованы');
 
 //        if($product->image!='no_image.jpg')
 //            Storage::delete('public/images/products/'.$product->image);

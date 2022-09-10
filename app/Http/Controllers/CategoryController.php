@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         //
         if(Auth::guest() || (Auth::user()->role !== "admin"))
-            return redirect('/products')->with('error', 'you are not authorized');
+            return redirect('/products')->with('error', 'Вы не авторизованы');
         $data = [
             'title' => 'Создание категории',
             'message' => ''
