@@ -31,7 +31,6 @@ class OrderController extends Controller
         if(Auth::user()->id != $order->user_id && Auth::user()->role !== 'admin')
             return redirect(route('products'))->with('error', 'Вы не формировали данный заказ');
 
-        $order = Order::find($id);
         $order->products = Order::orderwithproducts($order);
         $data = [
             'order' => $order,
