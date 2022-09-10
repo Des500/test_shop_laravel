@@ -14,7 +14,6 @@
         @auth()
             @if(Auth::user()->role === 'admin')
                 @if(!empty($category_id))
-{{--                    <a class="btn btn-warning" href="/public/category/{{ $category_id }}/edit">--}}
                     <a class="btn btn-warning" href="{{ route('category.edit', ['category' => $category_id] ) }}">
                         Изменить категорию
                     </a>
