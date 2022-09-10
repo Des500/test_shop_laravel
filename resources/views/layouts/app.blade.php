@@ -167,14 +167,17 @@
         <p></p>
 
         <footer class="bg-dark mt-5 py-4">
-            <div class="container d-flex flex-wrap justify-content-center">
-                <div class="text-light me-auto mb-3">Все права защищены &copy; {{ config('app.name', 'Laravel') }}</div>
-                <div class="ms-auto d-flex justify-content-end social">
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-telegram"></i>
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="text-light me-auto mb-3">Все права защищены &copy; {{ config('app.name', 'Laravel') }}</div>
+                    <div class="ms-auto d-flex justify-content-end social">
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-telegram"></i>
+                    </div>
                 </div>
+                <div class="text-muted">Laravel v{{ Illuminate\Foundation\Application::VERSION }}</div>
             </div>
         </footer>
 
