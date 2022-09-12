@@ -21,6 +21,8 @@ app/Mail/
 app/Models/
 #### controllers
 app/Http/Controllers
+#### migrations
+database/migrations
 #### сборка
 webpack.mix.js
 
