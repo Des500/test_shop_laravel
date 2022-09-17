@@ -22,20 +22,24 @@
 </head>
 <body class="antialiased">
     <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
             <div class="container">
-                <a class="navbar-brand me-md-5" href="{{ route('products') }}">
+                <a class="navbar-brand me-md-2" href="{{ route('products') }}">
                     <span class="logo">
                         <img src="/public/storage/images/logo.svg" alt="" width=55px" style="float: left">
                     </span>
                     {{ config('app.name', 'Laravel') }}
                     <div style="font-size: 16px">Мы знаем о Вас всё!</div>
                 </a>
+                <div class="ms-md-5"><i class="fa-solid fa-phone"></i> +7 927-207-91-12</div>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span>Аккаунт </span><span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse ms-md-3" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
@@ -89,74 +93,74 @@
                         @endguest
                     </ul>
                 </div>
+
             </div>
         </nav>
         <nav class="navbar navbar-expand-md navbar-light shadow-sm position-sticky top-0 container_menu_products">
-
-        <div class="container mt-1">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Все товары</a></li>
-                </ul>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedProducts">
-                    <?php
-                    $categories_navbar = \App\Models\Category::getlistnavbar();
-                    ?>
+            <div class="container mt-1">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><span class="nav-link menu_separator"></span></li>
-                        @foreach($categories_navbar as $item)
-
-                            {{--                            <li class="nav-item"><a class="nav-link" href="{{ route('category.show', ['id' => $item->id]) }}">{{ $item->title }}</a></li>--}}
-                            <?php
-                                $countProductsInCategory = \App\Models\Category::countProducts($item->id);
-                            ?>
-                            @if($countProductsInCategory > 0)
-                                <li class="nav-item"><a class="nav-link" href="{{ route('category.update', ['category' => $item->id]) }}">{{ $item->title }}</a></li>
-                            @else
-                                @auth()
-                                    @if(Auth::user()->role === 'admin')
-                                        <li class="nav-item"><a class="nav-link text-decoration-line-through" href="{{ route('category.update', ['category' => $item->id]) }}">{{ $item->title }}</a></li>
-                                    @endif
-                                @endauth
-                            @endif
-                        @endforeach
-                        @auth()
-                            @if(Auth::user()->role === 'admin')
-                                <li class="nav-item"><span class="nav-link menu_separator"></span></li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" href="{{ route('products.create') }}">Создать товар</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" href="{{ route('category.create') }}">Создать категорию</a>
-                                </li>
-                            @endif
-                        @endauth
+                        <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Все товары</a></li>
                     </ul>
-                </div>
 
-                <ul class="navbar-nav ms-auto">
-                    <?php
-                    $cart = new \App\Models\Cart();
-                    $summa = $cart->summaProductsInCart()->summa;
-                    ?>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-primary cart" href="{{ route('showcart') }}">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="ms-1">
-                                    @if($summa==0)
-                                    Пусто
+                    <div class="collapse navbar-collapse" id="navbarSupportedProducts">
+                        <?php
+                        $categories_navbar = \App\Models\Category::getlistnavbar();
+                        ?>
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item"><span class="nav-link menu_separator"></span></li>
+                            @foreach($categories_navbar as $item)
+
+                                {{--                            <li class="nav-item"><a class="nav-link" href="{{ route('category.show', ['id' => $item->id]) }}">{{ $item->title }}</a></li>--}}
+                                <?php
+                                    $countProductsInCategory = \App\Models\Category::countProducts($item->id);
+                                ?>
+                                @if($countProductsInCategory > 0)
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('category.update', ['category' => $item->id]) }}">{{ $item->title }}</a></li>
                                 @else
-                                    {{ $summa }} руб.
+                                    @auth()
+                                        @if(Auth::user()->role === 'admin')
+                                            <li class="nav-item"><a class="nav-link text-decoration-line-through" href="{{ route('category.update', ['category' => $item->id]) }}">{{ $item->title }}</a></li>
+                                        @endif
+                                    @endauth
                                 @endif
-                                </span>
-                        </a>
-                    </li>
-                </ul>
+                            @endforeach
+                            @auth()
+                                @if(Auth::user()->role === 'admin')
+                                    <li class="nav-item"><span class="nav-link menu_separator"></span></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="{{ route('products.create') }}">Создать товар</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="{{ route('category.create') }}">Создать категорию</a>
+                                    </li>
+                                @endif
+                            @endauth
+                        </ul>
+                    </div>
 
-                <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedProducts" aria-controls="navbarSupportedProducts" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        </div>
+                    <ul class="navbar-nav ms-auto">
+                        <?php
+                        $cart = new \App\Models\Cart();
+                        $summa = $cart->summaProductsInCart()->summa;
+                        ?>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primary cart" href="{{ route('showcart') }}">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="ms-1">
+                                        @if($summa==0)
+                                        Пусто
+                                    @else
+                                        {{ $summa }} руб.
+                                    @endif
+                                    </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedProducts" aria-controls="navbarSupportedProducts" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            </div>
         </nav>
 
 

@@ -28,7 +28,6 @@ class ContactController extends Controller
         if (!Auth::guest()) {
             $data['form']->name = Auth::user()->name;
             $data['form']->email = Auth::user()->email;
-            $data['form']->phone = Auth::user()->phone;
         }
 
         return view('contact.index')->with($data);

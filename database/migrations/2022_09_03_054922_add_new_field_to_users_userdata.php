@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewFieldToUsersPhone extends Migration
+class AddNewFieldToUsersUserdata extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddNewFieldToUsersPhone extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('phone', 20);
+            $table->bigInteger('userdata_id');
         });
     }
 
@@ -28,7 +28,7 @@ class AddNewFieldToUsersPhone extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn('phone');
+            $table->dropColumn('userdata_id');
         });
     }
 }
