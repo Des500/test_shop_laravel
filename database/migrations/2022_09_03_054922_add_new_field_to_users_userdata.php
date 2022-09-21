@@ -15,7 +15,7 @@ class AddNewFieldToUsersUserdata extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->bigInteger('userdata_id');
+            $table->bigInteger('userdata_id')->default(0);
         });
     }
 
