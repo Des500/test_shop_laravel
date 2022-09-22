@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect(\route('products'));
-});
+//Route::get('/', function () {
+//    return redirect(\route('products'));
+//});
+
+Route::get('/', 'ProductController@index')->name('main');
 
 //Route::get('/', 'ProductController@index')->name('main_products');
 

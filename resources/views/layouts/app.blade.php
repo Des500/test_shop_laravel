@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 
             <div class="container">
-                <a class="navbar-brand me-md-2" href="{{ route('products') }}">
+                <a class="navbar-brand me-md-2" href="{{ route('main') }}">
                     <span class="logo">
                         <img src="/public/storage/images/logo.svg" alt="" width=55px" style="float: left">
                     </span>
