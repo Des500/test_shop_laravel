@@ -86,11 +86,7 @@ class CartController extends Controller
 
         if(Auth::guest())
             return redirect(route('showcart'))->with('error', 'Необходимо зарегистрироваться или авторизоваться на сайте перед покупкой');
-        $order = new Order();
-        $order->addOrder();
-        $cart = new Cart();
-        $cart->clearCart();
-        return redirect( route('home') );
+        return redirect( route('adresses.select') );
     }
 
 }

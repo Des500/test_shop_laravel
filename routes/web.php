@@ -35,6 +35,13 @@ names([
     'index' => 'category',
 ]);
 
+Route::resource('adresses', 'UserDataController')->
+names([
+    'index' => 'adresses',
+]);
+Route::get('adresses-select', 'UserDataController@adressSelect')->name('adresses.select');
+Route::post('adresses-saveselection', 'UserDataController@saveSelection')->name('adresses.saveselection');
+Route::post('adresses-showajax', 'UserDataController@showAjax')->name('adresses.showajax');
 
 Route::post('/addcart', 'CartController@addcart')->name('addcart');
 Route::post('/getquantity', 'CartController@getquantity')->name('getquantity');
@@ -45,9 +52,11 @@ Route::get('/showcart', 'CartController@index')->name('showcart');
 Route::get('/buycart', 'CartController@buycart')->name('buycart');
 Route::get('/clearcart', 'CartController@clearcart')->name('clearcart');
 
-Route::get('/showorder/{id}', 'OrderController@show')->name('showorder');
-Route::get('/ordertocart/{id}', 'OrderController@ordertocart')->name('ordertocart');
-Route::post('/changeorderstatus', 'OrderController@changeOrderStatus')->name('changeorderstatus');
+Route::get('order/index', 'OrderController@index')->name('order.index');
+Route::get('order/showorder/{id}', 'OrderController@show')->name('showorder');
+Route::get('order/ordertocart/{id}', 'OrderController@ordertocart')->name('ordertocart');
+Route::post('order/changeorderstatus', 'OrderController@changeOrderStatus')->name('changeorderstatus');
+Route::post('order/addorder', 'OrderController@addOrder')->name('addorder');
 
 Route::get('/paymentorder/{id}', 'PaymentController@paymentorder')->name('paymentorder');
 Route::get('/newpaymentsystem/', 'PaymentController@newpaymentsystem')->name('newpaymentsystem');
@@ -59,4 +68,5 @@ Route::get('/send', 'MailController@send');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'OrderController@index')->name('home');

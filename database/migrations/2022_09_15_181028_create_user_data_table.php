@@ -16,6 +16,7 @@ class CreateUserDataTable extends Migration
         Schema::create('user_data', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
+            $table->string('contact_name', 100)->nullable();
             $table->string('contact_phone', 20);
             $table->text('contact_adress');
             $table->timestamps();

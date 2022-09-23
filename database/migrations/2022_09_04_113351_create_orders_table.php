@@ -18,8 +18,9 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('order_id')->unique();
             $table->text('order_content');
-            $table->integer('summa');
+            $table->integer('summa')->unsigned();
             $table->bigInteger('operator_id')->unsigned()->nullable();
+            $table->bigInteger('userdata_id')->unsigned()->nullable();
             $table->string('order_status');
             $table->timestamps();
         });

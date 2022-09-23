@@ -22,7 +22,6 @@
 </head>
 <body class="antialiased">
     <div id="app">
-
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 
             <div class="container">
@@ -50,11 +49,9 @@
                         </li>
                     </ul>
 
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -77,6 +74,8 @@
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         Личный кабинет
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('adresses') }}">Адреса</a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">Заказы</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -96,6 +95,7 @@
 
             </div>
         </nav>
+
         <nav class="navbar navbar-expand-md navbar-light shadow-sm position-sticky top-0 container_menu_products">
             <div class="container mt-1">
                     <ul class="navbar-nav me-auto">

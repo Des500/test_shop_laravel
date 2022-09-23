@@ -120,7 +120,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->title = $request->input('title');
-        $product->category_id = explode(' - ',$request->input('category'))[0];
+        $product->category_id = $request->input('category');
         $product->shot_desc = $request->input('shot_desc');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
@@ -203,7 +203,7 @@ class ProductController extends Controller
 
         $product = Product::find($id);;
         $product->title = $request->input('title');
-        $product->category_id = explode(' - ',$request->input('category'))[0];
+        $product->category_id = $request->input('category');
         $product->shot_desc = $request->input('shot_desc');
         $product->description = $request->input('description');
         $product->price = $request->input('price');

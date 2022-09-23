@@ -28,7 +28,7 @@
                             @if($product->category_id == $category->id)
                                 selected
                             @endif
-                        >{{ $category->id }} - {{ $category->title }}</option>
+                            value="{{ $category->id }}">{{ $category->id }} - {{ $category->title }}</option>
                     @endforeach
                 </select>
                 <br>

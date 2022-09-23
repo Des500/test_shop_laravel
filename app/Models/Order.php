@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function addOrder() {
+    public function addOrder($userdata_id) {
         $cart = new Cart();
         $current_cart = $cart->summaProductsInCart();
         $cart_items = $current_cart->cart;
@@ -23,6 +23,7 @@ class Order extends Model
         $this->order_id = Auth::user()->email.time();
         $this->order_content = $order_content;
         $this->summa = $current_cart->summa;
+        $this->userdata_id = $userdata_id;
         $this->order_status = "new";
         $this->created_at = time();
         $this->updated_at = time();
@@ -39,7 +40,7 @@ class Order extends Model
         return $data;
     }
 
-    public static function orderwithproducts ($order) {
+    public static function orderWithProducts ($order) {
         $order_content = (array)json_decode($order->order_content);
         foreach ($order_content as $product_id => $cart_item) {
             $product = Product::find($product_id);
@@ -54,5 +55,9 @@ class Order extends Model
 
     public function products () {
         return $this->hasMany(Product::class);
+    }
+
+    public function userdata () {
+        return $this->belongsTo(UserData::class);
     }
 }

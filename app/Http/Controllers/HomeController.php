@@ -20,25 +20,4 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        if(Auth::guest() || (Auth::user()->role !== "admin"))
-            $orders = $user->orders()->orderBy('id','desc')->get();
-        else
-            $orders = Order::orderBy('id','desc')->get();
-        $data = [
-            'orders' => $orders,
-            'orderstatus' => Order::orderstatus()
-        ];
-//        $data['orders']->user = auth()->user();
-        return view('users.home')->with($data);
-    }
 }

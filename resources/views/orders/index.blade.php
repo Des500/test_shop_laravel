@@ -9,11 +9,11 @@
 @endsection
 
 @section('content')
-    <h2>Заказы</h2>
+    @include('users.blocks.usermenu')
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Личный кабинет</div>
+                <div class="card-header">{{ $title }}</div>
 
                 <div class="card-body">
                     @if (session('status'))

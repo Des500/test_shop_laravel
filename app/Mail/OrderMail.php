@@ -32,7 +32,7 @@ class OrderMail extends Mailable
      */
     public function build()
     {
-        $this->order->products = Order::orderwithproducts($this->order);
+        $this->order->products = Order::orderWithProducts($this->order);
         $data = [
             'title' => 'Заказ №'.$this->order->id.' от '.$this->order->created_at.' отгружен.',
             'order' => $this->order,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\UserData;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,32 @@ class OrderController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        if(Auth::guest() || (Auth::user()->role !== "admin"))
+            $orders = $user->orders()->orderBy('id','desc')->get();
+        else
+            $orders = Order::orderBy('id','desc')->get();
+        $data = [
+            'orders' => $orders,
+            'orderstatus' => Order::orderstatus(),
+            'title' => 'Личный кабинет - Заказы',
+        ];
+        return view('orders.index')->with($data);
+    }
+
+    public function addOrder (Request $request) {
+        $adress_id = $request->input('adress_id');
+        if ($adress_id == 0)
+            redirect('adresses.index')->with('error', 'Необходимо указать адрес');
+        $order = new Order();
+        $order->addOrder($request->input('adress_id'));
+        $cart = new Cart();
+        $cart->clearCart();
+        return redirect( route('home') );
+    }
 
     public function show ($id) {
 
@@ -31,7 +58,8 @@ class OrderController extends Controller
         if(Auth::user()->id != $order->user_id && Auth::user()->role !== 'admin')
             return redirect(route('products'))->with('error', 'Вы не формировали данный заказ');
 
-        $order->products = Order::orderwithproducts($order);
+        $order->products = Order::orderWithProducts($order);
+        $order->adress = UserData::find($order->userdata_id);
         $data = [
             'order' => $order,
             'orderstatus' => Order::orderstatus()

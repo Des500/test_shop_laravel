@@ -130,5 +130,31 @@
     });
 
 
-})(jQuery);
+    function showAdressSelection (id) {
+        let token = getToken();
+        let post_data = {
+            _token: token,
+            id: id
+        }
+        $.post('/adresses-showajax', post_data, function(data) {
+            let data_array = JSON.parse(data);
+            if (data_array != null) {
+                console.log(data_array);
+                document.querySelector('#contact_phone').innerHTML = '<b>Телефон: </b>' + data_array['contact_phone'];
+                document.querySelector('#contact_adress').innerHTML = '<b> Адрес: </b>' + data_array['contact_adress'];
+            }
+        })
+
+    }
+
+    document.querySelector('.select_adress select[name="adress_id"]').addEventListener('change', function () {
+        showAdressSelection(this.value);
+    })
+    document.addEventListener('DOMContentLoaded', function(){
+        showAdressSelection(document.querySelector('.select_adress select[name="adress_id"]').value);
+    });
+
+
+
+    })(jQuery);
 

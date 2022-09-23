@@ -16,9 +16,9 @@
 {{--                <input class="form-control cat_id" type="number" name="cat_id" placeholder="введите категорию" value="{{ $form['cat_id'] }}" required hidden>--}}
                 <label for="">Выбрать категорию</label>
                 <select class="form-select w-25"  name="category" required>
-                    <option selected disabled value="">Выбрать категорию...</option>
+                    <option disabled value="">Выбрать категорию...</option>
                     @foreach($form['categories'] as $category)
-                        <option>{{ $category->id }} - {{ $category->title }}</option>
+                        <option value="{{ $category->id }}">{{ $category->id }} - {{ $category->title }}</option>
                     @endforeach
                 </select>
                 <br>

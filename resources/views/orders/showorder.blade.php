@@ -9,17 +9,12 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-end pt-2">
-        <a class="btn btn-warning" href="{{ route('home') }}">Назад</a>
-        <hr>
-    </div>
+    @include('users.blocks.usermenu')
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>
                         Заказ {{ $order->id  }} от {{ $order->created_at }}
-                    </h4>
                 </div>
 <!--                --><?//=print_r($order)?>
 
@@ -51,6 +46,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                    <div>
+                        <p class="pt-2"><b>Имя: </b>{{ $order->adress->contact_name }} <b>Телефон: </b>{{ $order->adress->contact_phone }} <b>Адрес: </b> {{ $order->adress->contact_adress }}</p>
+                    </div>
                     <div class="d-flex justify-content-start align-items-center">
                         <span class="text-primary me-3">Сумма заказа <b>{{ $order->summa }} рублей</b>.</span>
                         <span class="text-primary me-3">Статус заказа <b>{{ $orderstatus[$order->order_status] }}</b></span>
