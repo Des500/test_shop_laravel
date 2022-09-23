@@ -139,7 +139,7 @@
         $.post('/adresses-showajax', post_data, function(data) {
             let data_array = JSON.parse(data);
             if (data_array != null) {
-                console.log(data_array);
+                document.querySelector('#contact_name').innerHTML = '<b> Имя: </b>' + data_array['contact_name'];
                 document.querySelector('#contact_phone').innerHTML = '<b>Телефон: </b>' + data_array['contact_phone'];
                 document.querySelector('#contact_adress').innerHTML = '<b> Адрес: </b>' + data_array['contact_adress'];
             }

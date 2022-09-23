@@ -18,7 +18,7 @@
                 <select class="form-select w-100"  name="adress_id" required>
                     <option disabled value="">Выбрать адрес...</option>
                     @foreach($adresses as $adresses)
-                        <option value="{{ $adresses->id }}">{{ $adresses->id }} - {{ $adresses->contact_adress }}</option>
+                        <option value="{{ $adresses->id }}">{{ $adresses->contact_adress }}</option>
                     @endforeach
                 </select>
                 <br>
@@ -28,7 +28,7 @@
             </form>
         </div>
         <div class="card-footer">
-            <p class="pt-2"><span id="contact_phone"></span> <span id="contact_adress"></span></p>
+            <p class="pt-2"><span id="contact_name"></span> <span id="contact_phone"></span> <span id="contact_adress"></span></p>
         </div>
     </div>
 @endsection
