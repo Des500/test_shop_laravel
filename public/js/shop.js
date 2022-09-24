@@ -130,6 +130,7 @@
     });
 
 
+    // выбо адреса заказчика
     function showAdressSelection (id) {
         let token = getToken();
         let post_data = {
@@ -150,11 +151,9 @@
     document.querySelector('.select_adress select[name="adress_id"]').addEventListener('change', function () {
         showAdressSelection(this.value);
     })
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function() {
         showAdressSelection(document.querySelector('.select_adress select[name="adress_id"]').value);
     });
 
-
-
-    })(jQuery);
+})(jQuery);
 
